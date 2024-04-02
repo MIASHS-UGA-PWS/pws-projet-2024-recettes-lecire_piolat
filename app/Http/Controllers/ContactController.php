@@ -16,33 +16,34 @@ class ContactController extends Controller
     function store(Request $request){
         //custom error messages
         $messages = [
-            'captcha.required' => 'The captcha field is required.',
-            'captcha.captcha' => 'The captcha is incorrect, please try again.',
+            'captcha.required' => 'Remplissez le captcha.',
+            'captcha.captcha' => 'Le captcha est incorrect, essayez à nouveau.',
         ];
         //dd($messages);
       //  dd($request->all());
         //validate the form data
         $request->validate([
-            'nom' => 'required',
+            'name' => 'required',
             'email' => 'required|email',
             'message' => 'required',
             'captcha' => 'required|captcha'
         ], $messages);
 
-        $contact = new Contact();
-        $contact->nom = request('nom');
-        $contact->email = request('email');
-        $contact->message = request('message');
 
+        //create a new contact model
+        Contact::create([
+            'email' => $request->input('email'),
+            'message' => $request->input('message')
+        ]);
         // dd($contact);
 
-        try {
-            $contact->save();
-        } catch (\Exception $e) {
-            Log::error('Failed to save model: ' . $e->getMessage());
-            // redirect back with an error message
-            return back()->withErrors('Erreur avec l\'envoi du formulaire, veuillez reessayer.');
-        }
+        // try {
+        //     $contact->save();
+        // } catch (\Exception $e) {
+        //     Log::error('Failed to save model: ' . $e->getMessage());
+        //     // redirect back with an error message
+        //     return back()->withErrors('Erreur avec l\'envoi du formulaire, veuillez reessayer.');
+        // }
 
         return back()->with('success', 'Votre message a bien été envoyé.');
     }

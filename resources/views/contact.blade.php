@@ -9,6 +9,9 @@
         <p style="color: green; font-style: italic; font-size: 18px;">{{ session('success') }}</p>
     </div>
 @endif
+@if ($errors->has('captcha'))
+<p style="color: red; font-style: italic; font-size: 18px;">{{ $errors->first('captcha') }}</p>
+@endif
 <style>
     .subtitle {
         display: block;
@@ -71,9 +74,7 @@
         <textarea name="message" id="message" class="form-control textarea box" required rows="5">{{ old('message') }}</textarea>
     </div>
     <br>
-    @if ($errors->has('captcha'))
-        <span class="text-danger">{{ $errors->first('captcha') }}</span>
-    @endif
+
     <div> <!-- Captcha image and input field -->
         <label for="captcha" class="subtitle has-text-grey">Captcha</label>
         <p>{!! captcha_img() !!}</p>
