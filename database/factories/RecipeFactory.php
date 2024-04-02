@@ -17,7 +17,7 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         $this->faker->addProvider(new \FakerRestaurant\Provider\fr_FR\Restaurant($this->faker));
-        $title = $this->faker->numerify($this->faker->foodName(). ' ###');
+        $title = $this->faker->numerify($this->faker->foodName());
         return [
          'user_id' => User::inRandomOrder()->first()->id, // Get a random user ID,
          'title' => $title,
