@@ -9,6 +9,7 @@ avec toutes les commandes à exécuter et les fichiers à configurer : git clone
 
 ### Captcha Service Provider
     composer require mews/captcha
+    Si utilisation avec Windows, inclure le GD2 DLL php_gd2.dll dans php.ini ainsi que php_fileinfo.dll et php_mbstring.dll
 
 ## Setup Sqlite
     DB_DATABASE=/ABSOLUTE_PATH/database/database.sqlite

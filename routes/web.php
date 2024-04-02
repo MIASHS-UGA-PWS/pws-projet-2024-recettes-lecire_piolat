@@ -37,6 +37,26 @@ use App\Http\Controllers\CaptchaController;
     Route::post('/captcha', [CaptchaController::class, 'handleSubmit']);
 */
 
+    Route::any('captcha-test', function() {
+        if (request()->getMethod() == 'POST') {
+            $rules = ['captcha' => 'required|captcha'];
+            $validator = validator()->make(request()->all(), $rules);
+            if ($validator->fails()) {
+                echo '<p style="color: #ff0000;">Incorrect!</p>';
+            } else {
+                echo '<p style="color: #00ff30;">Matched :)</p>';
+            }
+        }
+
+        $form = '<form method="post" action="captcha-test">';
+        $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+        $form .= '<p>' . captcha_img() . '</p>';
+        $form .= '<p><input type="text" name="captcha"></p>';
+        $form .= '<p><button type="submit" name="check">Check</button></p>';
+        $form .= '</form>';
+        return $form;
+    });
+
 use App\Http\Controllers\TagController;
     Route::get('/tags', [TagController::class, 'index']);
     Route::get('/tags/{name}', [TagController::class, 'searchByTag']);

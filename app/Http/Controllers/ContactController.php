@@ -10,22 +10,33 @@ class ContactController extends Controller
     function index(){ //loads the contact form template in the view
         return view('contact');
     }
+
     //ajout de la fonction store pour le formulaire de contact
-    /*function store(Request $request){
+    function store(Request $request){
+        //custom error messages
+        $messages = [
+            'captcha.required' => 'The captcha field is required.',
+            'captcha.captcha' => 'The captcha is incorrect, please try again.',
+        ];
+
+        //validate the form data
         $request->validate([
             'nom' => 'required',
             'email' => 'required|email',
-            'message' => 'required'
-        ]);
-        return back()->with('message', 'Votre message a bien été envoyé.');
-    }*/
+            'message' => 'required',
+            'captcha' => 'required|captcha'
+        ], $messages);
 
-    function store() { //store the contact form data
         $contact = new Contact();
-      //  $contact->nom = request('nom');
         $contact->email = request('email');
         $contact->message = request('message');
-        $contact->save();
+        try { $contact->save();
+        } catch (\Exception $e) {
+            Log::error('Failed to save model: ' . $e->getMessage());
+            // redirect back with an error message
+            return back()->withErrors('Erreur avec l\'envoi du formulaire, veuillez reessayer.');
+        }
+
         return back()->with('success', 'Votre message a bien été envoyé.');
-}
+    }
 }

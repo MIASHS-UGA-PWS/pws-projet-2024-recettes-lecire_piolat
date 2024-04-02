@@ -63,7 +63,11 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // show the recipe
+        $recipe = Recipe::find($id);
+        return view('admin/show',array(
+            'recipe' => $recipe
+        ));
     }
 
     /**

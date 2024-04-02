@@ -70,7 +70,16 @@
         <label for="message" class="subtitle has-text-grey">Comment pouvons-nous vous aider?</label>
         <textarea name="message" id="message" class="form-control textarea box" required rows="5">{{ old('message') }}</textarea>
     </div>
-    <br> <!-- Submit button -->s
+    <br>
+    @if ($errors->has('captcha'))
+        <span class="text-danger">{{ $errors->first('captcha') }}</span>
+    @endif
+    <div> <!-- Captcha image and input field -->
+        <label for="captcha" class="subtitle has-text-grey">Captcha</label>
+        <p>{!! captcha_img() !!}</p>
+        <input type="text" name="captcha" id="captcha" class="form-control box" required>
+    </div>
+    <br> <!-- Submit button -->
     <button type="submit" class="btn btn-primary subtitle has-text-grey rounded">Submit</button>
 </form>
 @endsection
