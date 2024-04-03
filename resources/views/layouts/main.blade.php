@@ -4,6 +4,8 @@
     <title>Recettes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSRF Token for POST requests -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="icon" type="image/png" sizes="32x32" href="data:image;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA3CAIAAADBkI5VAAAAA3NCSVQICAjb4U/gAAAAEHRFWHRTb2Z0d2FyZQBTaHV0dGVyY4LQCQAABUtJREFUaAXtmW1MG2UcwO+udQ7YltKCqMhgMJXwsgwhbnOBjA84F9lGTLYF0cwXtix+YH5yfkCNftA4wwdNEI3JMrJlksV9mYNpQJQlOkCnzqyj14NWNkrreOldSym0d/d413LX57ley7WMhQ+9L/f8n/u//J7//3kr4AAAbO09xNpDEolSWInUJZWtRLKlV1H2U9+3fzOwUHn05OHyjTiGBezdX3T0z5U1vf3qMwZBZif62tuvup860vLas0ZB1vpwXvtw74/9g2Zn0LC1+tDRhm2ZsYoVjQW8g12dv5j92OjlmgPlNWkYe7una8A8C6yXrtdX7DPinK334k//ODhzZ8+eyle26DRQAZ/92sXO8903nH4+vB/ZqREn8fknDbnqYNFYnG2EWhRteTbIiSEXZ2fmeFF2z9A8ZtSBIMuGvk+SpAdsyVwmX8BjvtR2+tyN6ZCR6DD0AL9l+G/6YK56uqNgeRdpZUQK6QEeOiwDj5uBt17AjlnGgpKa+hvMDne823r2DwVTWDmwuKhuFb1vgXmKvBtKkmTBe2hPCBP4GAah4OcoiwPRlWyW3v6Rcx9+2jMegAejUIkhKrPF2SyjqBsRK+QXyC3JFz9JWr2xYgL6esdn340txPouOVF9K7B4l9UqTCDoAQu0JzTVMAwwbqS8GGBtscoIvENnvvr5Py4pqKgi+kfJO2hZAMNIMwowS3mTqXkvRaqWkRvv/nZgBhmfbKSlgWZLGD2FlhDjhYm+5J5fYGg/OnzeQVJzaJcYlbX09trQlacFJqKDYPH3rFa3Yoi8h5GnT3S6ADtqGWMj7sItlhocuqfwo9SJLyNYfsqiKCEG5mkmKKUDypzkVViNpENBwLvMt6YUfZK+xjeMxdoto0uzW7ZGEgQ8THivkD9jGDdBUnI6w/2B8TF0j4HUNTYhLDBltc7CgwQ8EDcFaWoJSzFI0z6ACf0R70IZSRuySvhpp0tOcEQxoRZ0+HCTdydhKu721bNd/7p+hRYUO3LlzAWnd3AG4uK9jgk3qMiWzyCeFg+plT0QFggEkEHyPvKH8yTiHizY+y/YkS5BCARFOxkL+H3zELZSW5MMFZEwZhkhUZO5oITrjSYDYseySFG1OoL0OMifLr+keAMkQ2pxmri+qPTptDgKSX2CMdZX7K19FO7Q4BFPr3i+JkcuoAYLTSoIxbqSQ2/WPqLTHoTIKGt8fY/6lUlT+FhKCBaGG3a+9d6xKpMmMiJ964FTpxo2Q6smVpSE+1EswXx94f7Wtg+adjz2cJyk4XpD8YsnT3/cXLnc3TRhoLCB2lD12ZWN739dP/7Xb0M3h/quDDsipzeRWVr3QnVF1a4dxVnrkgypxUwNK2Sn25hftTd/e5az73cYK6+6sWl/ZOvUEiIZnagiJuPk/tusBhahW7HXFTuIzpQu5/EcLT8eoy0jPauAReTt3JWnj7OOI9FjtlYBC9MVHGzel/vQCsBWPgvUBoxnbG/+6J36JzcQyaLF3CDUwiXQp8957kRbWd1g/7U/rY4ZX0C4OQLvnVvUVGQPjOdttbDEmLpNRbsbinZL4dmbX77R2g3fIKUv0e/VmFvRURLuSWElkrJUtlLZSiQDieim5tb9zBZOIPkUxOTvLATqC1PKEDcSFOpfauryCgugqwBhKijYlOzxq8stzId+txCZBbH/eL4MFp5dd/x49RNpwlUA12eWH245UpL0KYoba4+dqN2cHvJlKH2p5eVtMX+l4Fr+zQkWmSmayzAZM5JmkgsBAp5pdzDdZIrrSxOW7POBNZYp4gPjUARKYSkSEldco9n6H9SdMMzjwY/iAAAAAElFTkSuQmCC">
@@ -23,6 +25,8 @@
 
 </head>
 
+    <!-- Add icon library for ratings -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
 <body>
     <div class="">
 

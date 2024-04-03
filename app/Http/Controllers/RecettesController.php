@@ -16,15 +16,20 @@ class RecettesController extends Controller
     }
 
     public function show($recipe_url) {
-        $recipe = Recipe::where('url',$recipe_url)->first(); //get first recipe with recipe_nam == $recipe_name
-        // LOAD CAPTCHA QUESTION ? $captchaQuestion = $this->generateCaptchaQuestion();
+        // Fetch the recipe by its URL (or any unique identifier you're using)
+        $recipe = Recipe::where('url', $recipe_url)->firstOrFail(); // Using firstOrFail to handle not found errors gracefully
 
         // Fetch tags associated with the recipe
         $tags = $recipe->tags()->pluck('name');
 
-        //methode compact pour passer plusieurs variables à la vue
-        return view('recipes/single', compact('recipe', 'tags'));
+        // Calculate the average rating of the recipe
+        $averageRating = $recipe->ratings()->avg('rating');
 
+        // Convert the average rating to a format suitable for display (round it to the nearest half-star for display purposes)
+        $averageRating = round($averageRating * 2) / 2;
+
+        // Pass the recipe, tags, and averageRating to the view
+        return view('recipes/single', compact('recipe', 'tags', 'averageRating'));
     }
 
     public function search(Request $request) {

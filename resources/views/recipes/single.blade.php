@@ -41,6 +41,10 @@
         margin: 30px 0;
     }
 
+    .checked {
+        color: orange;
+    }
+
 </style>
 
     <div class="columns is-multiline">
@@ -55,6 +59,47 @@
             </a>
             {{-- cherche dans la table user la colonne name. --}}
             <p class="subtitle has-text-grey"><em>par {{ $recipe->user->name }}</em></p>
+
+            {{-- display la note moyenne de la recette avec un event listener pour chaque etoile --}}
+            @for ($i = 1; $i <= 5; $i++)
+                <span class="fa fa-star {{ $i <= $averageRating ? 'checked' : '' }}" onclick="rateRecipe({{ $i }})"></span>
+            @endfor
+            {{-- script pour envoyer la note de la recette au serveur --}}
+            <script>
+            function rateRecipe(rating) {
+                fetch('/rate-recipe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        // user_id is always 1 until implementation of authentication
+                        user_id: 1,
+                        recipe_id: {{ $recipe->id }},
+                        rating: rating
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    updateStars(rating); // update the stars
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+            function updateStars(rating) {
+            const stars = document.querySelectorAll('.fa-star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('checked');
+                } else {
+                    star.classList.remove('checked');
+                }
+            });
+            }
+            </script>
+            <br><br>
 
             {{-- display la liste des ingredients. de la table ingredient_recipe --}}
             <span class="subtitle has-text-grey"><strong><em>Ingredients</em></strong> :</span>

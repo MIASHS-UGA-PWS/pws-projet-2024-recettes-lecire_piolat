@@ -43,4 +43,13 @@ class Recipe extends Model
     {
         return $this->belongsToMany(Ingredient::class);
     }
+
+    /**
+     * Get the ratings for the recipe.
+     */
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
 }

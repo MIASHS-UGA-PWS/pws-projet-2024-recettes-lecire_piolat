@@ -48,7 +48,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AdminController;
     Route::resource('/admin/recettes', AdminController::class);
 
-
+ use App\Http\Controllers\RatingController;
+    Route::post('/rate-recipe', [RatingController::class, 'rateRecipe']); // route pour noter une recette
 
 use App\Http\Controllers\TagController;
     Route::get('/tags', [TagController::class, 'index']);

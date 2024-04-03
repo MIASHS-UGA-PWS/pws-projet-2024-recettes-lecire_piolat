@@ -17,12 +17,12 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         $this->faker->addProvider(new \FakerRestaurant\Provider\fr_FR\Restaurant($this->faker));
-        $title = $this->faker->numerify($this->faker->foodName());
+        $title = $this->faker->numerify($this->faker->foodName().' ###');
         return [
          'user_id' => User::inRandomOrder()->first()->id, // Get a random user ID,
          'title' => $title,
          'content' => $this->faker->paragraph($nbSentences = 10, $variableNbSentences = true),
-         'price' => $this->faker->words($nb = 1, $asText = true),
+         'price' => $this->faker->numberBetween($min = 0, $max = 100),
          'url' => str_replace(' ', '-', $title),
          'status' => 'published',
         ];
