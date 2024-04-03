@@ -25,7 +25,10 @@
                 {{-- display la liste des ingredients. de la table ingredient_recipe --}}
                 <span class="subtitle has-text-grey"><strong><em>Ingredients</em></strong> :</span>
                 @foreach ($recipe->ingredients as $key => $ingredient)
-                    <span class="subtitle has-text-grey">{{ $ingredient->name }}</span>
+
+                    {{-- si on clicke sur un ingrédient, on obtient la liste des recettes qui contiennent cet ingrédient dans le titre, tags ou dans les ingrédients --}}
+                    <span><a class="subtitle has-text-grey" href="{{ url('recettes/search?recipe=' . $ingredient->name) }}">{{ $ingredient->name }}</a></span>
+
                     {{-- ajoute une virgule entre les ingredients, sauf si c'est le dernier --}}
                     @if (!$loop->last)
                         <span class="subtitle has-text-grey">,</span>

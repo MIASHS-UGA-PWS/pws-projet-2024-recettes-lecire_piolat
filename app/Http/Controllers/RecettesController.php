@@ -38,6 +38,12 @@ class RecettesController extends Controller
             $q->where('name', 'like', '%'.$search.'%');
         })->get());
 
+        //add the recipes that have the search term in the ingredients. check ingredient_recipe table
+        $recipes = $recipes->merge(Recipe::whereHas('ingredients', function($q) use ($search) {
+            $q->where('name', 'like', '%'.$search.'%');
+        })->get());
+
+
        //return the recettes view with the recipes
          return view('recettes', compact('recipes'));
     }
