@@ -1,5 +1,5 @@
 ## Guide d'installation du projet 
-avec toutes les commandes à exécuter et les fichiers à configurer : git clone ... , composer install, npm install, modification du fichier .env, lancement des migrations, lancement du ou des serveurs, etc.  
+
 ### Prerequisites
 Avoir PHP, Composer, Node.js, et npm.
 
@@ -32,18 +32,21 @@ Avoir PHP, Composer, Node.js, et npm.
     npm run dev
 
 ## Parties implémentées - Branche vue
+- **barre de recherche :**
+    La recherche via barre de recherche (dans la navbar) affiche les recettes qui contiennent le contenu recherché dans leurs titres, leurs tags ou leurs ingrédients.  
+
 - **Gestion des commentaires :** formulaire de création d'un commentaire + affichage de la liste des commentaires
-    - visible dans la vue Single.vue, à l'url ```/recettes/{recette.url}```
+    - visible dans la vue Single.vue, à l'url ```/recettes/{recette.url}``` accessible en clickant sur le titre d'une recette
 
 - **Gestion des tags**
-    - voir ```/tags``` (clicker sur "Tags" dans la navbar) pour afficher une liste des tags. Clicker sur un tag pour afficher toutes les recettes qui contiennent ce tag.  
+    - voir ```/tags``` (clicker sur "Tags" dans la navbar) pour afficher une liste des tags. Clicker sur un tag pour afficher toutes les recettes qui contiennent ce tag. 
   
 - **Gestion des ingrédients**
     - tester la création et édition de recettes. Se trouvent aux URL ```/admin/recettes/create``` et ```/admin/recettes/edit``` (page admin dispo dans la navbar)
     - On peut y ajouter, supprimer, modifier les ingrédients qu'on souhaite associer à la recette. Si un ingrédient n'existait pas dans la db, il est créé. S'il existait déjà, il est rattaché à la recette.
 
 - **CRUD des recettes améliorées**
-    - Dans les components Vue.js, on lie les input aux data properties. Les vues contiennent les méthodes de soumission de formulaire
+    - Dans les components Vue.js, on lie les input aux data properties. Les vues contiennent les méthodes de soumission de formulaire.
   
 - **Utilisation d'Inertia avec composants en vue**
     - les routes pointent vers des controllers qui renvoient des vues Inertia. Ces vues inertia sont des composants Vue.js. Le composant Modal.vue, par exemple, est utilisé pour ouvrir une fenêtre modale qui display une recette. 
