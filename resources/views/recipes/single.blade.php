@@ -131,6 +131,17 @@
                 @endif
             </p>
 
+            {{-- display l'image de la recette sinon un bouton pour uploade --}}
+            @if ($recipe->image)
+                <img src="{{ asset('images/' . $recipe->image) }}" alt="{{ $recipe->title }}" style="width: 100%; height: auto;">
+            @else
+                <form action="{{ url('upload-image') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                    <input type="file" name="image" id="image">
+                    <button type="submit" class="btn">Upload Image</button>
+                </form>
+            @endif
         </div>
     </div>
     <br><br>

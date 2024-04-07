@@ -42,6 +42,10 @@ the form contains fields for the title, content, ingredients, and price of the r
                 <label for="price" class="subtitle has-text-grey">Price</label>
                 <input type="number" name="price" id="price" class="form-control" required>
             </div>
+            <div>
+                <label for="image">Recipe Image:</label>
+                <input type="file" name="image" id="image">
+            </div>
             <br><button type="submit" class="btn btn-primary subtitle has-text-grey rounded">Ajouter</button>
         </form>
     </div>

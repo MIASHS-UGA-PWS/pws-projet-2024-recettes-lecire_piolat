@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('set null');
             $table->mediumText('title');
             $table->longText('content');
-            //price of the recipe
+            $table->string('image')->nullable();
             $table->integer('price')->unsigned();
             $table->string('url', 200)->unique('url_UNIQUE');
             $table->string('status', 45)->default('published');

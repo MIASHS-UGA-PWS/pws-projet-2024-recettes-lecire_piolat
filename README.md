@@ -100,3 +100,14 @@ php artisan migrate:fresh --seed
 
 - **Utilisation du framework Vue.js**
     - On n'utilise aucune vue blade dans cette branche. Les composants Vue.js utilisent les fonctionnalités de Vue.js, comme les propriétés réactives, les directives ```v-model```, ```v-for```, ```v-if```, ou encore les méthodes de soumissions de formulaire.  
+    - Les composants Vue.js utilisent les fonctionnalités de Vue.js, comme les propriétés réactives, les directives ```v-model```, ```v-for```, ```v-if```, ou encore les méthodes de soumissions de formulaire.  
+  
+## Parties implémentées - Branche main
+- **Gestion des notes**  
+    - Les utilisateurs peuvent attribuer une note (de 1 à 5) à une recette et la modifier. Les notes sont enregistrées en base de données et affichées sur la page de chaque recette. La moyenne des notes est calculée et affichée pour chaque recette.
+
+- **formulaire captcha** 
+    - Un formulaire captcha a été  ajouté sur la page de commentaire et l'utilisateur doit saisir correctement le résultat de l'équation dans l'image pour valider le formulaire.
+    - Le package "mews/captcha" est déjà installé avec la commande composer require mais il faut installer les dépendances GD2 DLL (php_gd2.dll), php_fileinfo.dll et php_mbstring.dll dans le fichier php.ini si vous utilisez Windows.
+
+## Remarques

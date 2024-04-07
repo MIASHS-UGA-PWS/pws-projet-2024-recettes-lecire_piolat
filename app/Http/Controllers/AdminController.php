@@ -40,9 +40,17 @@ class AdminController extends Controller
             'title' => 'required',
             'content' => 'required',
             'ingredients' => 'required',
-            //price is a number, is min 0, and is not required
-            'price' => 'numeric|min:0'
+            'price' => 'numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        // gestion image
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = $image->getClientOriginalName();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+        }
 
         //store the recipe
         $recipe = new Recipe;
@@ -53,6 +61,7 @@ class AdminController extends Controller
         $recipe->ingredients = $request->input('ingredients');
         $recipe->price = $request->input('price');
         $recipe->url = $request->input('title');
+        $recipe->image = $name;
         $recipe->save();
         return redirect('/admin/recettes')->with('success', 'Vous avez ajouté une recette avec succès');
 

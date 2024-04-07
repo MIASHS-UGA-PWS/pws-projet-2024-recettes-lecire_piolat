@@ -25,6 +25,7 @@ class RecipeFactory extends Factory
          'price' => $this->faker->numberBetween($min = 0, $max = 100),
          'url' => str_replace(' ', '-', $title),
          'status' => 'published',
+         'image' => 'https://source.unsplash.com/random',
         ];
     }
 }
