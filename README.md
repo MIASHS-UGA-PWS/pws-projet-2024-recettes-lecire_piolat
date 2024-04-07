@@ -56,11 +56,10 @@ Avoir PHP, Composer, Node.js, et npm.
   
 ## Parties implémentées - Branche main
 - **Gestion des notes**  
+    - Les utilisateurs peuvent attribuer une note (de 1 à 5) à une recette et la modifier. Les notes sont enregistrées en base de données et affichées sur la page de chaque recette. La moyenne des notes est calculée et affichée pour chaque recette.
 
 - **formulaire captcha** 
-  
-
-## Fonctionnalités implémentées
-
+    - Un formulaire captcha a été  ajouté sur la page de commentaire et l'utilisateur doit saisir correctement le résultat de l'équation dans l'image pour valider le formulaire.
+    - Le package "mews/captcha" est déjà installé avec la commande composer require mais il faut installer les dépendances GD2 DLL (php_gd2.dll), php_fileinfo.dll et php_mbstring.dll dans le fichier php.ini si vous utilisez Windows.
 
 ## Remarques
