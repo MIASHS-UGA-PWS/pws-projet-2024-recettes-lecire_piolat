@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Recipe::class,'user_id');
     }
+
+    /**
+     * Set the user role
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

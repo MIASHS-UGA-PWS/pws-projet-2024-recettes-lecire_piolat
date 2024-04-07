@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,8 +15,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create 2 roles
+        DB::table('roles')->insert([
+            ['name' => 'admin'],
+            ['name' => 'user'],
+        ]);
+
         /* ---------- creation de 10 users aleatoires ------------- */
         \App\Models\User::factory(10)->create();
+        // they all have the user role by default
+        \App\Models\User::all()->each(function ($user) {
+            $user->role_id = '2'; // '2' is the id of the role 'user
+            $user->save();
+        });
+
+        //another one with role admin
+        \App\Models\User::factory()->create([
+            'role_id' => '1', // '1' is the id of the role 'admin'
+            // password is 'admin'
+            'password' => Hash::make('admin'),
+        ]);
 
         /* ---------- creation de 15 recettes aleatoires ------------ */
         \App\Models\Recipe::factory()

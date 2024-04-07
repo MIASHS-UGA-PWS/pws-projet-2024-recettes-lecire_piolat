@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -8,49 +11,68 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
-
-
-// Route::any('captcha-test', function() {
-//     if (request()->getMethod() == 'POST') {
-//         $rules = ['captcha' => 'required|captcha'];
-//         $validator = validator()->make(request()->all(), $rules);
-//         if ($validator->fails()) {
-//             echo '<p style="color: #ff0000;">Incorrect!</p>';
-//         } else {
-//             echo '<p style="color: #00ff30;">Matched :)</p>';
-//         }
-//     }
-
-//     // $form = '<form method="post" action="captcha-test">';
-//     // $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
-//     // $form .= '<p>' . captcha_img() . '</p>';
-//     // $form .= '<p><input type="text" name="captcha"></p>';
-//     // $form .= '<p><button type="submit" name="check">Check</button></p>';
-//     // $form .= '</form>';
-//     // return $form;
-// });
-
+/* Main */
 use App\Http\Controllers\HomeController;
-    Route::get('/', [HomeController::class, 'index']); //route pour la page d'accueil
+    Route::get('/', [HomeController::class, 'index']);
+
+/* Formulaire de contact */
 use App\Http\Controllers\ContactController;
-    Route::get('/contact', [ContactController::class, 'index']); //route pour le formulaire de contact
-    Route::post('/contact', [ContactController::class, 'store']); //route pour le formulaire de contact
+    Route::get('/contact', [ContactController::class, 'index']);
+    Route::post('/contact', [ContactController::class, 'store']);
+
+/* Recettes */
 use App\Http\Controllers\RecettesController;
-    Route::get('/recettes', [RecettesController::class, 'index']); //route pour afficher toutes les recettes
-    Route::get('/recettes/search', [RecettesController::class, 'search']); //route pour la recherche de recettes
-    Route::get('/recettes/{url}',[RecettesController::class, 'show']); //route pour afficher une seule recette
+    Route::get('/recettes', [RecettesController::class, 'index']);
+    Route::get('/recettes/search', [RecettesController::class, 'search']);
+    Route::get('/recettes/{url}',[RecettesController::class, 'show']);
+
+/* Commentaires */
 use App\Http\Controllers\CommentController;
-    Route::post('/comment', [CommentController::class, 'store']); //route pour le formulaire de commentaire
+    Route::post('/comment', [CommentController::class, 'store']);
 use App\Http\Controllers\AdminController;
     Route::resource('/admin/recettes', AdminController::class);
 
+/* Notes */
  use App\Http\Controllers\RatingController;
-    Route::post('/rate-recipe', [RatingController::class, 'rateRecipe']); // route pour noter une recette
+    Route::post('/rate-recipe', [RatingController::class, 'rateRecipe']);
 
+/* Tags */
 use App\Http\Controllers\TagController;
     Route::get('/tags', [TagController::class, 'index']);
     Route::get('/tags/{name}', [TagController::class, 'searchByTag']);
+
+/* Roles */
+use App\Http\Controllers\RoleController;
+    Route::get('/roles', [RoleController::class, 'index']);
+    Route::get('/roles/create', [RoleController::class, 'create']);
+    Route::post('/roles', [RoleController::class, 'store']);
+    Route::get('/roles/{id}', [RoleController::class, 'show']);
+    Route::get('/roles/{id}/edit', [RoleController::class, 'edit']);
+    Route::put('/roles/{id}', [RoleController::class, 'update']);
+    Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
+
+/* Authentification */
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
