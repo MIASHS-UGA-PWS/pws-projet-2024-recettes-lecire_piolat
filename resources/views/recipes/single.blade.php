@@ -131,7 +131,7 @@
                 @endif
             </p>
 
-            {{-- display l'image de la recette sinon un bouton pour uploader --}}
+            {{-- display l'image de la recette sinon un bouton pour uploade --}}
             @if ($recipe->image)
                 <img src="{{ asset('images/' . $recipe->image) }}" alt="{{ $recipe->title }}" style="width: 100%; height: auto;">
             @else
