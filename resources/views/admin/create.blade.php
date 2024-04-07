@@ -24,7 +24,7 @@ the form contains fields for the title, content, ingredients, and price of the r
     <div class="container">
         <h1 class="mt-2 mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">Créer la Recette</h1>
 
-        <form action="{{ route('recettes.store') }}" method="POST">
+        <form action="{{ route('recettes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title" class="subtitle has-text-grey">Title</label>
@@ -43,11 +43,9 @@ the form contains fields for the title, content, ingredients, and price of the r
                 <input type="number" name="price" id="price" class="form-control" required>
             </div>
             <div>
-                <label for="image">Recipe Image:</label>
-                <input type="file" name="image" id="image">
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
             <br><button type="submit" class="btn btn-primary subtitle has-text-grey rounded">Ajouter</button>
         </form>
     </div>
 @endsection
-
