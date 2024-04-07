@@ -2,8 +2,8 @@
 
 ### Clone du git
 ```bash
-git clone git@github.com:MIASHS-UGA-PWS/pws-projet-2024-recettes-lecire_piolat.git #en ssh
-git clone https://github.com/MIASHS-UGA-PWS/pws-projet-2024-recettes-lecire_piolat.git #en https  
+    git clone git@github.com:MIASHS-UGA-PWS/pws-projet-2024-recettes-lecire_piolat.git #en ssh
+    git clone https://github.com/MIASHS-UGA-PWS/pws-projet-2024-recettes-lecire_piolat.git #en https  
 ```
 ### Dépendances (hors composer install)
 voici les extensions PHP dont j'ai eu besoin avant de faire ```composer install``` :
@@ -18,10 +18,10 @@ composer update
 ```
 ### Installation des dépendances, environnement de travail et génération de l'application key 
 ```bash
-composer require mews/captcha #ne devrait pas etre necessaire
-composer install
-cp .env.example .env    
-php artisan key:generate
+    composer require mews/captcha #ne devrait pas etre necessaire
+    composer install
+    cp .env.example .env    
+    php artisan key:generate
 ```
 
 ### Base de données
