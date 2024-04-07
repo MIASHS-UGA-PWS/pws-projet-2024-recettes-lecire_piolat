@@ -43,15 +43,7 @@ DB_CONNECTION=sqlite
 php artisan migrate
 php artisan db:seed 
 ``` 
-## Fonctions implémentées : Branche main  
-- **Système de notation** : voir à ```/recettes/{recette.url}``` (en clickant sur le titre d'une recette).
-    - Une note possible par utilisateur et par recette. Noter plusieurs fois revient à modifier la ligne existante dans la table ratings.  
 
-- **Captcha** : dans le formulaire de contact (à ```/contact```, ou clicker sur "Contact" dans la navbar).
-
-## Branche vue
-Inertia et Vue.js sont implémentés dans la branche vue.
-  
 ### Installer NodeJS v20 et vite v10 
 ```bash
 sudo apt install curl
@@ -69,6 +61,13 @@ npm install @vitejs/plugin-vue
 npm run dev
 php artisan serve
 ```
+## Parties implémentées - Branche main
+- **Gestion des notes**  
+    - Les utilisateurs peuvent attribuer une note (de 1 à 5) à une recette et la modifier. Les notes sont enregistrées en base de données et affichées sur la page de chaque recette. La moyenne des notes est calculée et affichée pour chaque recette.
+
+- **formulaire captcha** 
+    - Un formulaire captcha a été ajouté sur la page de commentaire et l'utilisateur doit saisir correctement le résultat de l'équation dans l'image pour valider le formulaire.
+    - Le package "mews/captcha" est déjà installé avec la commande composer require mais il faut installer les dépendances GD2 DLL (php_gd2.dll), php_fileinfo.dll et php_mbstring.dll dans le fichier php.ini si vous utilisez Windows.
 
 ### Changer de branche, migrer et seed à nouveau
 ```bash
@@ -100,3 +99,5 @@ php artisan migrate:fresh --seed
 
 - **Utilisation du framework Vue.js**
     - On n'utilise aucune vue blade dans cette branche. Les composants Vue.js utilisent les fonctionnalités de Vue.js, comme les propriétés réactives, les directives ```v-model```, ```v-for```, ```v-if```, ou encore les méthodes de soumissions de formulaire.  
+  
+## Remarques
