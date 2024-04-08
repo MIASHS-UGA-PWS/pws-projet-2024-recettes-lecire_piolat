@@ -93,8 +93,9 @@ class TagTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/tags/create')
-                    ->type('name', 'Tag 1')
+                    ->type('name', 'Tag 37')
                     ->press('Create')
+                    ->waitForText('The name has already been taken.', 5)
                     ->assertSee('The name has already been taken.');
         });
     }
@@ -108,6 +109,7 @@ class TagTest extends DuskTestCase
             $browser->visit('/tags/1/edit')
                     ->type('name', 'Tag 1')
                     ->press('Update')
+                    ->waitForText('The name has already been taken.', 5)
                     ->assertSee('The name has already been taken.');
         });
     }
@@ -123,6 +125,7 @@ class TagTest extends DuskTestCase
                     ->press('Update')
                     ->visit('/tags')
                     ->press('Delete')
+                    ->waitForText('The tag is associated with a post.', 5)
                     ->assertSee('The tag is associated with a post.');
         });
     }
