@@ -81,7 +81,7 @@ php artisan migrate:fresh --seed
 
 ## Fonctions implémentées : branche vue  
 
-- **Barre de recherche** : Une recherche dans la barre de recherche (dans la navbar) affiche les recettes qui ont le contenu recherché dans leurs titres, leurs tags ou leurs ingrédients.  
+- **Barre de recherche** : Une recherche dans la barre de recherche (dans la navbar) affiche les recettes qui ont le contenu recherché dans leurs titres, leurs tags ou leurs ingrédients. On peut aussi faire une recherche en clickant sur des ingrédients ou des tags.
 
 - **Gestion des commentaires** :  formulaire de création d'un commentaire et affichage de la liste des commentaires
     - visible dans la vue Single.vue, à l'url ```/recettes/{recette.url}``` accessible en clickant sur le titre d'une recette  
@@ -91,7 +91,7 @@ php artisan migrate:fresh --seed
 
 - **Gestion des ingrédients**
     - **Tester la création et édition de recettes.** Se trouvent aux URL ```/admin/recettes/create``` et ```/admin/recettes/edit``` (page admin dispo dans la navbar)
-    - Clicker sur les boutons "Ajouter" et "Supprimer" pour ajouter, supprimer, modifier les ingrédients qu'on souhaite associer à la recette. Si un ingrédient n'existait pas dans la db, il est créé. S'il existait déjà, il est rattaché à la recette.
+    - Clicker sur les boutons "Ajouter" et "Supprimer" pour ajouter, supprimer, modifier les ingrédients qu'on souhaite associer à la recette. Si un ingrédient n'existait pas dans la db, il est créé. S'il existait déjà, il est rattaché à la recette. Dans le formulaire de création, les ingrédients ne sont pas sensibles à la casse : si l'ingrédient "Fromage" existe déjà dans la db, vous pouvez écrire "fromage" ; la recette sera bien reliée à l'ingrédient déjà existant "Fromage".
 
 - **CRUD des recettes améliorées**
     - Dans les components Vue, on a lié les input aux data properties. Les vues contiennent les méthodes de soumission de formulaire.
