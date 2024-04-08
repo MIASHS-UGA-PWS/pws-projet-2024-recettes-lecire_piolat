@@ -63,7 +63,10 @@ php artisan serve
 ```
 ## Parties implémentées - Branche main
 - **Gestion des notes**  
-    - Les utilisateurs peuvent attribuer une note (de 1 à 5) à une recette et la modifier. Les notes sont enregistrées en base de données et affichées sur la page de chaque recette. La moyenne des notes est calculée et affichée pour chaque recette.
+    - Les utilisateurs peuvent attribuer une note (de 1 à 5) à une recette et la modifier. Les notes sont enregistrées en base de données et affichées sur la page de chaque recette. La moyenne des notes est calculée et affichée pour chaque recette.  
+  
+- **Ajout d'images**
+    - Les utilisateurs peuvent upload une image pour chaque recette. Aller sur ```/recettes/url_de_la_recette``` en clickant sur le titre d'une recette, charger une image, et clicker sur le bouton "Upload l'image". L'image s'affiche ensuite sur le frontend.
 
 - **formulaire captcha** 
     - Un formulaire captcha a été ajouté sur la page de commentaire et l'utilisateur doit saisir correctement le résultat de l'équation dans l'image pour valider le formulaire.

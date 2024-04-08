@@ -52,5 +52,30 @@ class RecettesController extends Controller
        //return the recettes view with the recipes
          return view('recettes', compact('recipes'));
     }
+
+    public function update(Request $request) {
+        // Validate the request data
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'recipe_id' => 'required|exists:recipes,id'
+        ]);
+
+        // Get the recipe by its ID
+        $recipe = Recipe::findOrFail($request->input('recipe_id'));
+
+        // Store the image file
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+
+            // Update the recipe's image field
+            $recipe->image = $imageName;
+            $recipe->save();
+        }
+
+        // Redirect back to the recipe's page
+        return redirect()->back()->with('success', 'Image ajoutée.');
+    }
 }
 ?>

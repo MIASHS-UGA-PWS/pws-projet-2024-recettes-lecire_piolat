@@ -42,8 +42,11 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecettesController;
     Route::get('/recettes', [RecettesController::class, 'index']); //route pour afficher toutes les recettes
     Route::get('/recettes/search', [RecettesController::class, 'search']); //route pour la recherche de recettes
-    Route::get('/recettes/{url}',[RecettesController::class, 'show']); //route pour afficher une seule recette
-use App\Http\Controllers\CommentController;
+    Route::get('/recettes/{url}',[RecettesController::class, 'show']);//route pour afficher une seule recette
+    Route::post('/recettes/{url}',[RecettesController::class, 'update']);  //upload une image pour une recette
+
+    use App\Http\Controllers\CommentController;
+
     Route::post('/comment', [CommentController::class, 'store']); //route pour le formulaire de commentaire
 use App\Http\Controllers\AdminController;
     Route::resource('/admin/recettes', AdminController::class);
