@@ -56,15 +56,15 @@ class AdminController extends Controller
         $recipe->url = $request->input('title');
 
         // gestion image
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     //dd($image);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            //dd($image);
 
-        //     $name = $image->getClientOriginalName();
-        //     $destinationPath = public_path('/images');
-        //     $image->move($destinationPath, $name);
-        //     $recipe->image = $name;
-        // }
+            $name = $image->getClientOriginalName();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $recipe->image = $name;
+        }
 
         $recipe->save();
         return redirect('/admin/recettes')->with('success', 'Vous avez ajouté une recette avec succès');
