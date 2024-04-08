@@ -88,7 +88,7 @@ php artisan migrate:fresh --seed
 
 - **Gestion des ingrédients**
     - **Tester la création et édition de recettes.** Se trouvent aux URL ```/admin/recettes/create``` et ```/admin/recettes/edit``` (page admin dispo dans la navbar)
-    - On peut ajouter, supprimer, modifier les ingrédients qu'on souhaite associer à la recette. Si un ingrédient n'existait pas dans la db, il est créé. S'il existait déjà, il est rattaché à la recette.
+    - Clicker sur les boutons "Ajouter" et "Supprimer" pour ajouter, supprimer, modifier les ingrédients qu'on souhaite associer à la recette. Si un ingrédient n'existait pas dans la db, il est créé. S'il existait déjà, il est rattaché à la recette.
 
 - **CRUD des recettes améliorées**
     - Dans les components Vue, on a lié les input aux data properties. Les vues contiennent les méthodes de soumission de formulaire.

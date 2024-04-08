@@ -24,7 +24,7 @@ the form contains fields for the title, content, ingredients, and price of the r
     <div class="container">
         <h1 class="mt-2 mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">Créer la Recette</h1>
 
-        <form action="{{ route('recettes.store') }}" method="POST">
+        <form action="{{ route('recettes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title" class="subtitle has-text-grey">Title</label>
@@ -34,10 +34,7 @@ the form contains fields for the title, content, ingredients, and price of the r
                 <label for="content" class="subtitle has-text-grey">Content</label>
                 <textarea name="content" id="content" class="form-control message-textarea" required required rows="10"></textarea>
             </div>
-            <div class="form-group">
-                <label for="ingredients" class="subtitle has-text-grey">Ingredients</label>
-                <textarea name="ingredients" id="ingredients" class="form-control message-textarea" required></textarea>
-            </div>
+
             <div class="form-group">
                 <label for="price" class="subtitle has-text-grey">Price</label>
                 <input type="number" name="price" id="price" class="form-control" required>

@@ -36,21 +36,14 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'ingredients' => 'required',
+          //  'ingredients' => 'required',
             'price' => 'numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        // gestion image
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $name = $image->getClientOriginalName();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-        }
 
         //store the recipe
         $recipe = new Recipe;
@@ -58,10 +51,21 @@ class AdminController extends Controller
         $recipe->user_id = 1;
         $recipe->title = $request->input('title');
         $recipe->content = $request->input('content');
-        $recipe->ingredients = $request->input('ingredients');
+        //$recipe->ingredients = $request->input('ingredients');
         $recipe->price = $request->input('price');
         $recipe->url = $request->input('title');
-        $recipe->image = $name;
+
+        // gestion image
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     //dd($image);
+
+        //     $name = $image->getClientOriginalName();
+        //     $destinationPath = public_path('/images');
+        //     $image->move($destinationPath, $name);
+        //     $recipe->image = $name;
+        // }
+
         $recipe->save();
         return redirect('/admin/recettes')->with('success', 'Vous avez ajouté une recette avec succès');
 
